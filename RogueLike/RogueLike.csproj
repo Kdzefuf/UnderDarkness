@@ -1,34 +1,53 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <RollForward>Major</RollForward>
     <PublishReadyToRun>false</PublishReadyToRun>
     <TieredCompilation>false</TieredCompilation>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Icon.ico" />
-    <None Remove="Icon.bmp" />
+    <Compile Remove="Components\**" />
+    <Compile Remove="Content\Graphic\Enemies\Boss\ASE files\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Content\Graphic\Enemies\Boss\ASE files\**" />
+    <None Remove="Components\**" />
+    <None Remove="Content\Graphic\Enemies\Boss\ASE files\**" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icon.ico" />
-    <EmbeddedResource Include="Icon.bmp" />
+    <Compile Remove="GameScene.cs" />
+    <Compile Remove="MenuItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
+    <None Remove="Content\Graphic\Hero\Death\Death.aseprite" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+    <PackageReference Include="RogueSharp" Version="4.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Game1.cs">
+    <None Update="Content\Graphic\Environment\Dungeon_Tileset.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="Content\Graphic\Environment\room\asset_Easter.png">
+    </None>
+    <None Update="Content\Graphic\Environment\ground.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Graphic\Environment\wall.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Graphic\UI\Menu\Buttons\button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Graphic\UI\Menu\Buttons\buttonpress.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Graphic\UI\Menu\mainmenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
