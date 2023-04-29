@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RogueSharp;
 
@@ -13,8 +12,7 @@ namespace RogueLike
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            float multiplier = Sprite.Width;
-            spriteBatch.Draw(Sprite, new Vector2(X * multiplier, Y * multiplier), null, Color.White, 0.0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(Sprite, new Vector2(X * Sprite.Width, Y * Sprite.Height), null, Color.White, 0.0f, Vector2.One, 1f, SpriteEffects.None, LayerDepth.Figures);
         }
 
         public bool HandleInput(InputState inputState, IMap map)

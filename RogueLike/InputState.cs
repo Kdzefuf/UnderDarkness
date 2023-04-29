@@ -108,15 +108,15 @@ namespace RogueLike
                 // Read input from the specified player.
                 playerIndex = controllingPlayer.Value;
 
-                var i = (int)playerIndex;
+                var i = playerIndex;
 
-                return (CurrentKeyboardStates[i].IsKeyDown(key) && LastKeyboardStates[i].IsKeyUp(key));
+                return Keyboard.GetState(i).IsKeyDown(key);
             }
             else
             {
                 // Accept input from any player.
-                return (IsNewKeyPress(key, PlayerIndex.One, out playerIndex) || IsNewKeyPress(key, PlayerIndex.Two, out playerIndex)
-                    || IsNewKeyPress(key, PlayerIndex.Three, out playerIndex) || IsNewKeyPress(key, PlayerIndex.Four, out playerIndex));
+                return IsNewKeyPress(key, PlayerIndex.One, out playerIndex) || IsNewKeyPress(key, PlayerIndex.Two, out playerIndex)
+                    || IsNewKeyPress(key, PlayerIndex.Three, out playerIndex) || IsNewKeyPress(key, PlayerIndex.Four, out playerIndex);
             }
         }
 
@@ -135,13 +135,15 @@ namespace RogueLike
 
                 var i = (int)playerIndex;
 
-                return (CurrentGamePadStates[i].IsButtonDown(button) && LastGamePadStates[i].IsButtonUp(button));
+                return GamePad.GetState(i).IsButtonDown(button);
             }
             else
             {
                 // Accept input from any player.
-                return (IsNewButtonPress(button, PlayerIndex.One, out playerIndex) || IsNewButtonPress(button, PlayerIndex.Two, out playerIndex)
-                    || IsNewButtonPress(button, PlayerIndex.Three, out playerIndex) || IsNewButtonPress(button, PlayerIndex.Four, out playerIndex));
+                return IsNewButtonPress(button, PlayerIndex.One, out playerIndex) ||
+                    IsNewButtonPress(button, PlayerIndex.Two, out playerIndex) ||
+                    IsNewButtonPress(button, PlayerIndex.Three, out playerIndex) ||
+                    IsNewButtonPress(button, PlayerIndex.Four, out playerIndex);
             }
         }
 
@@ -152,15 +154,17 @@ namespace RogueLike
                 // Read input from the specified player.
                 playerIndex = controllingPlayer.Value;
 
-                var i = (int)playerIndex;
+                var i = playerIndex;
 
-                return (CurrentKeyboardStates[i].IsKeyDown(key));
+                return Keyboard.GetState(i).IsKeyDown(key);
             }
             else
             {
                 // Accept input from any player.
-                return (IsKeyPressed(key, PlayerIndex.One, out playerIndex) || IsKeyPressed(key, PlayerIndex.Two, out playerIndex)
-                    || IsKeyPressed(key, PlayerIndex.Three, out playerIndex) || IsKeyPressed(key, PlayerIndex.Four, out playerIndex));
+                return IsKeyPressed(key, PlayerIndex.One, out playerIndex) ||
+                    IsKeyPressed(key, PlayerIndex.Two, out playerIndex) ||
+                    IsKeyPressed(key, PlayerIndex.Three, out playerIndex) ||
+                    IsKeyPressed(key, PlayerIndex.Four, out playerIndex);
             }
         }
 
@@ -173,13 +177,15 @@ namespace RogueLike
 
                 var i = (int)playerIndex;
 
-                return (CurrentGamePadStates[i].IsButtonDown(button));
+                return GamePad.GetState(i).IsButtonDown(button);
             }
             else
             {
                 // Accept input from any player.
-                return (IsButtonPressed(button, PlayerIndex.One, out playerIndex) || IsButtonPressed(button, PlayerIndex.Two, out playerIndex)
-                    || IsButtonPressed(button, PlayerIndex.Three, out playerIndex) || IsButtonPressed(button, PlayerIndex.Four, out playerIndex));
+                return IsButtonPressed(button, PlayerIndex.One, out playerIndex) ||
+                    IsButtonPressed(button, PlayerIndex.Two, out playerIndex) ||
+                    IsButtonPressed(button, PlayerIndex.Three, out playerIndex) ||
+                    IsButtonPressed(button, PlayerIndex.Four, out playerIndex);
             }
         }
 
@@ -227,6 +233,38 @@ namespace RogueLike
         {
             PlayerIndex playerIndex;
             return IsNewKeyPress(Keys.Space, controllingPlayer, out playerIndex);
+        }
+
+        public bool IsScrollLeft(PlayerIndex? controllingPlayer)
+        {
+            PlayerIndex playerIndex;
+            return IsKeyPressed(Keys.A, controllingPlayer, out playerIndex);
+        }
+        public bool IsScrollRight(PlayerIndex? controllingPlayer)
+        {
+            PlayerIndex playerIndex;
+            return IsKeyPressed(Keys.D, controllingPlayer, out playerIndex);
+        }
+        public bool IsScrollUp(PlayerIndex? controllingPlayer)
+        {
+            PlayerIndex playerIndex;
+            return IsKeyPressed(Keys.W, controllingPlayer, out playerIndex);
+        }
+        public bool IsScrollDown(PlayerIndex? controllingPlayer)
+        {
+            PlayerIndex playerIndex;
+            return IsKeyPressed(Keys.S, controllingPlayer, out playerIndex);
+        }
+        public bool IsZoomOut(PlayerIndex? controllingPlayer)
+        {
+            PlayerIndex playerIndex;
+            return IsNewKeyPress(Keys.OemPeriod, controllingPlayer, out playerIndex);
+        }
+
+        public bool IsZoomIn(PlayerIndex? controllingPlayer)
+        {
+            PlayerIndex playerIndex;
+            return IsNewKeyPress(Keys.OemComma, controllingPlayer, out playerIndex);
         }
     }
 }

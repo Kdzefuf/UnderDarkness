@@ -10,7 +10,7 @@ namespace RogueLike
     public class RogueGame : Game
     {
         public IMap _map;
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
         private List<GameComponent> _components;
 
