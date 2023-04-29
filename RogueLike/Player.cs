@@ -19,7 +19,7 @@ namespace RogueLike
         {
             if (inputState.IsLeft(PlayerIndex.One))
             {
-                int tempX = X - 1;
+                int tempX = (X - 1);
                 if (map.IsWalkable(tempX, Y))
                 {
                     X = tempX;
