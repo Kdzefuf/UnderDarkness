@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using RogueSharp;
 
 namespace RogueLike
@@ -9,6 +10,7 @@ namespace RogueLike
         public int X { get; set; }
         public int Y { get; set; }
         public Texture2D Sprite { get; set; }
+        public int speed = 1;
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -17,36 +19,47 @@ namespace RogueLike
 
         public bool HandleInput(InputState inputState, IMap map)
         {
-            if (inputState.IsLeft(PlayerIndex.One))
+            KeyboardState key = Keyboard.GetState();
+
+            if (key.IsKeyDown(Keys.A) && key.IsKeyDown(Keys.D) && key.IsKeyDown(Keys.S) || key.IsKeyDown(Keys.A) && key.IsKeyDown(Keys.D) && key.IsKeyDown(Keys.W))
             {
-                int tempX = (X - 1);
+                int tempX = X - speed;
                 if (map.IsWalkable(tempX, Y))
                 {
                     X = tempX;
                     return true;
                 }
             }
-            else if (inputState.IsRight(PlayerIndex.One))
+            if (key.IsKeyDown(Keys.A))
             {
-                int tempX = X + 1;
+                int tempX = X - speed;
                 if (map.IsWalkable(tempX, Y))
                 {
                     X = tempX;
                     return true;
                 }
             }
-            else if (inputState.IsUp(PlayerIndex.One))
+            else if (key.IsKeyDown(Keys.D))
             {
-                int tempY = Y - 1;
+                int tempX = X + speed;
+                if (map.IsWalkable(tempX, Y))
+                {
+                    X = tempX;
+                    return true;
+                }
+            }
+            else if (key.IsKeyDown(Keys.W))
+            {
+                int tempY = Y - speed;
                 if (map.IsWalkable(X, tempY))
                 {
                     Y = tempY;
                     return true;
                 }
             }
-            else if (inputState.IsDown(PlayerIndex.One))
+            else if (key.IsKeyDown(Keys.S))
             {
-                int tempY = Y + 1;
+                int tempY = Y + speed;
                 if (map.IsWalkable(X, tempY))
                 {
                     Y = tempY;

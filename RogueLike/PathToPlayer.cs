@@ -32,7 +32,7 @@ namespace RogueLike
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (_cells != null && Global.GameState == GameStates.Debugging)
+            if (_cells != null)
             {
                 foreach (Cell cell in _cells)
                 {

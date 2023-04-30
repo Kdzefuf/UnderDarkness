@@ -21,7 +21,7 @@ namespace RogueLike
         public override void Initialize()
         {
             IMapCreationStrategy<Map> mapCreationStrategy =
-                new RandomRoomsMapCreationStrategy<Map>(60, 34, 9, 12, 8);
+                new RandomRoomsMapCreationStrategy<Map>(Global.MapWidth, Global.MapHeight, 9, 12, 8);
             _map = Map.Create(mapCreationStrategy);
 
             Global.Camera.ViewportWidth = rogueGame._graphics.GraphicsDevice.Viewport.Width;
@@ -68,24 +68,13 @@ namespace RogueLike
             {
                 rogueGame.Exit();
             }
-            // New code to handle switching modes when spacebar is pressed
-            else if (rogueGame._inputState.IsSpace(PlayerIndex.One))
-            {
-                if (Global.GameState == GameStates.PlayerTurn)
-                {
-                    Global.GameState = GameStates.Debugging;
-                }
-                else if (Global.GameState == GameStates.Debugging)
-                {
-                    Global.GameState = GameStates.PlayerTurn;
-                }
-            }
             else
             {
                 if (_player.HandleInput(rogueGame._inputState, _map))
                 {
                     Global.Camera.CenterOn((Cell)_map.GetCell(_player.X, _player.Y));
                     UpdatePlayerFieldOfView();
+                    _enemy.Update();
                 }
             }
 
@@ -98,28 +87,28 @@ namespace RogueLike
             int sizeOfSprites = 32;
             foreach (Cell cell in _map.GetAllCells())
             {
-                var position = new Vector2(cell.X * sizeOfSprites, cell.Y * sizeOfSprites);
-                if (!cell.IsExplored && Global.GameState != GameStates.Debugging)
+                var position = new Vector2(cell.X * Global.SpriteWidth, cell.Y * Global.SpriteHeight);
+                if (!cell.IsExplored)
                 {
                     continue;
                 }
                 Color tint = Color.White;
-                if (!cell.IsInFov && Global.GameState != GameStates.Debugging)
+                if (!cell.IsInFov)
                 {
                     tint = Color.Gray;
                 }
                 if (cell.IsWalkable)
                 {
-                    rogueGame._spriteBatch.Draw(_ground, position, tint);
+                    rogueGame._spriteBatch.Draw(_ground, position, null, tint, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, LayerDepth.Cells);
                 }
                 else
                 {
-                    rogueGame._spriteBatch.Draw(_wall, position, tint);
+                    rogueGame._spriteBatch.Draw(_wall, position, null, tint, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, LayerDepth.Cells);
                 }
             }
+
             _player.Draw(rogueGame._spriteBatch);
-            if (Global.GameState == GameStates.Debugging
-                || _map.IsInFov(_enemy.X, _enemy.Y))
+            if (_map.IsInFov(_enemy.X, _enemy.Y))
             {
                 _enemy.Draw(rogueGame._spriteBatch);
             }
@@ -134,7 +123,7 @@ namespace RogueLike
             while (true)
             {
                 int x = Global.Random.Next(55);
-                int y = Global.Random.Next(32);
+                int y = Global.Random.Next(30);
                 if (_map.IsWalkable(x, y))
                 {
                     return (Cell)_map.GetCell(x, y);

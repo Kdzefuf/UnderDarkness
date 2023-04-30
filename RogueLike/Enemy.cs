@@ -30,7 +30,7 @@ namespace RogueLike
         {
             float multiplier = Sprite.Width;
             spriteBatch.Draw(Sprite, new Vector2(X * multiplier, Y * multiplier), null,
-                Color.White, 0.0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+                Color.White, 0.0f, Vector2.One, 1f, SpriteEffects.None, LayerDepth.Figures);
         }
     }
 }

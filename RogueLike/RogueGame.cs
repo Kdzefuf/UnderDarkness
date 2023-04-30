@@ -1,55 +1,46 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using RogueSharp;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RogueLike
 {
     public class RogueGame : Game
     {
-        public IMap _map;
-        public GraphicsDeviceManager _graphics;
-        public SpriteBatch _spriteBatch;
-        private List<GameComponent> _components;
-
-        public int windowWidth = 1920, windowHeight = 1080;
-        public Player _player;
-
-        private Texture2D _ground, _wall;
-        private Texture2D itemTexture;
-        private Texture2D selectedItemTexture;
-
-        private SpriteFont _font;
-
-        public InputState _inputState;
-
-        public KeyboardState _keyboardState;
-
-        public MouseState _mouseState;
+        //private Room _room;
+        GraphicsDeviceManager _graphics;
+        SpriteBatch _spriteBatch;
+        private List<GameObject> allObjects = new List<GameObject>();
+        private List<GameObject> itemsToBeAdded = new List<GameObject>();
+        private List<GameObject> itemsToBeDeleted = new List<GameObject>();
+        //private ActualGameState gameState = new ActualGameState(GameState.MENU);
+        private GameTime _gameTime;
+        Player _player = new Player(33, 230);
+        Mediator _mediator;
+        //private StartMenu _startMenu;
+        //private GameOverMenu _gameOverMenu;
 
         public RogueGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            TargetElapsedTime = new System.TimeSpan(0, 0, 0, 0, 50);
-            _inputState = new InputState();
+            //Mediator.Game = this;
+            //_mediator = new Mediator(allObjects, itemsToBeAdded, itemsToBeDeleted, player, room, gameState);
+            //_room.mediator = mediator;
+            //_room.initRandomLevel();
+            itemsToBeAdded.Add(_player);
+            _player.mediator = _mediator;
+            //allObjects.Add(new HUD(800, 100, mediator));
+            //startMenu = new StartMenu(800, 580, mediator, gameTime);
+            //gameOverMenu = new GameOverMenu(800, 580, mediator, gameTime);
+            //mediator.gameOverMenu = gameOverMenu;
+            _graphics.PreferredBackBufferHeight = 580;
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _graphics.PreferredBackBufferWidth = windowWidth;
-            _graphics.PreferredBackBufferHeight = windowHeight;
-            _graphics.IsFullScreen = true;
-            _graphics.ApplyChanges();
-
-            IsMouseVisible = true;
-
-            LevelComponent level = new LevelComponent(this);
-
-            Components.Add(level);
 
             base.Initialize();
         }
@@ -59,55 +50,75 @@ namespace RogueLike
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            _font = Content.Load<SpriteFont>(@"Fonts\Font");
-
-            base.LoadContent();
-        }
-
-        protected override void Update(GameTime gameTime)
-        {
-            if (_inputState.IsExitGame(PlayerIndex.One))
+            foreach (GameObject gameObject in allObjects)
             {
-                Exit();
+                gameObject.Load();
             }
 
-            _inputState.Update();
-
-            // TODO: Add your update logic here
-
-            base.Update(gameTime);
+            base.LoadContent();
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            // TODO: Add your drawing code here 
 
             base.Draw(gameTime);
         }
 
-        private void ChangeComponentState(GameComponent gameComponent, bool enabled)
+        protected void PlayUpdate(GameTime gameTime)
         {
-            gameComponent.Enabled = enabled;
-            if (gameComponent is DrawableGameComponent)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                ((DrawableGameComponent)gameComponent).Visible = enabled;
+                Exit();
             }
-        }
 
-        public GameComponent[] ReturnComponents()
-        {
-            return _components.ToArray();
-        }
-
-        public void SwitchScene(GameComponent scene)
-        {
-            GameComponent[] usedComponents = ReturnComponents();
-            foreach (GameComponent component in Components)
+            // TODO: Add your update logic here
+            foreach (var gameObject in allObjects)
             {
-                bool isUsed = usedComponents.Contains(component);
-                ChangeComponentState(component, isUsed);
+                if (_player.hitbox.Intersects(gameObject.hitbox))
+                {
+                    _player.Collision(gameObject);
+                    gameObject.Collision(_player);
+                }
+
+                foreach (var otherGameObject in allObjects)
+                {
+                    if (gameObject.hitbox.Intersects(otherGameObject.hitbox))
+                    {
+                        gameObject.Collision(otherGameObject);
+                    }
+                }
+
+                gameObject.Update(gameTime);
+            }
+
+            itemsToBeAdded.Sort();
+
+            foreach (var gameObject in itemsToBeAdded)
+            {
+                gameObject.Load();
+            }
+
+            allObjects.AddRange(itemsToBeAdded);
+            itemsToBeAdded.Clear();
+
+            foreach (var gameObject in itemsToBeDeleted)
+            {
+                allObjects.Remove(gameObject);
+            }
+            itemsToBeDeleted.Clear();
+
+            base.Update(gameTime);
+        }
+
+        private void PlayDraw(GameTime gameTime)
+        {
+            foreach (GameObject gameObject in allObjects)
+            {
+                gameObject.Draw(_spriteBatch, gameTime);
             }
         }
     }
