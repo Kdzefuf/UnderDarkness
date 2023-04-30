@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RogueLike
+﻿namespace RogueLike
 {
-    internal class Direction
+    public enum Direction
     {
+        Left, Right, Up, Down
     }
 }

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RogueLike
+﻿namespace RogueLike
 {
-    internal interface Interface1
+    interface IMediator
     {
+        Mediator mediator { get; set; }
     }
 }
