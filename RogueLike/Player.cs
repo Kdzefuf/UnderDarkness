@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace RogueLike
 {
@@ -12,30 +13,22 @@ namespace RogueLike
 
         private SoundEffect defaultShoot;
         public Rectangle hitbox;
-        //public Weapon weapon;
+        public Weapon weapon;
         private Direction direction;
-        //private TextField bloodRushText;
 
         public int speed = 2;
-        private int spriteWidth = 32;
-        private int spriteHeight = 32;
-        public int health = 100;
+        private int spriteWidth = 27;
+        private int spriteHeight = 27;
+        public int health = 3;
         private bool alive = true;
         public int prevPosX;
         public int prevPosY;
-        //private int cooldown = 500; //mills between shots
-        //private double lastShot = 0;
-        //private bool hurting = false;
-        //private int kills = 0;
-        //private int levelsCompleted;
-        //private int overallDamageTaken;
-        //private int overallDamageDone;
-        //private int overallHealingDone;
-        //private int projectilesFired;
-        //private int maxHp = 3;
-        //private int bloodRushHp = 25;
-        //private bool bloodRush = false;
-        //private bool hybris = false;
+        private int cooldown = 500; //mills between shots
+        private double lastShot = 0;
+        private bool hurting = false;
+        private int levelsCompleted;
+        private int projectilesFired;
+        private int maxHp = 3;
 
         public Player(int x, int y)
         {
@@ -49,26 +42,60 @@ namespace RogueLike
 
         public override bool Collision(GameObject other)
         {
-            //if (other is Wall)
-            //{
-            //    this.Y = prevPosY;
-            //    this.X = prevPosX;
-            //}
+            if (other is Wall)
+            {
+                this.Y = prevPosY;
+                this.X = prevPosX;
+            }
             return true;
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(playerRight, hitbox, Color.White);
-            if (direction == Direction.Right)
+            if (direction == Direction.Down)
+            {
+                spriteBatch.Draw(playerLeft, hitbox, Color.White);
+            }
+            if (direction == Direction.Up)
             {
                 spriteBatch.Draw(playerRight, hitbox, Color.White);
             }
-
             if (direction == Direction.Left)
             {
                 spriteBatch.Draw(playerLeft, hitbox, Color.White);
             }
+            if (direction == Direction.Right)
+            {
+                spriteBatch.Draw(playerRight, hitbox, Color.White);
+            }
+        }
+
+        //private void fireDefualt(int x, int y, Direction direction)
+        //{
+        //    Projectile defaultProjectile = new Projectile(x, y, direction, mediator);
+        //    this.Load();
+        //    defaultShoot.CreateInstance().Play();
+        //    defaultProjectile.Load();
+        //    mediator.itemToBeAdded.Add(defaultProjectile);
+        //}
+
+        private Boolean isDead()
+        {
+            if (health <= 0)
+            {
+                this.alive = false;
+                return true;
+            }
+            return false;
+        }
+
+        public override void Load()
+        {
+            playerRight = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Hero\Stay\stay1right");
+            playerLeft = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Hero\Stay\stay1left");
+
+            //defaultShoot = Mediator.Game.Content.Load<SoundEffect>("Sounds/DefaultWeapon");
         }
 
         public void Move()
@@ -110,6 +137,34 @@ namespace RogueLike
             }
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            lastShot += gameTime.ElapsedGameTime.TotalMilliseconds;
+            Move();
+            //shooting(gameTime);
+
+            if (health > maxHp)
+            {
+                this.speed = 1;
+                this.health--;
+
+            }
+            else
+            {
+                this.speed = 2;
+                this.cooldown = 500;
+            }
+
+            if (isDead())
+            {
+                mediator.gameOverMenu._player = this;
+                mediator.gameOverMenu.GiveStats();
+                mediator.State.State = GameState.GameOver;
+            }
+
+            this.hitbox = new Rectangle(this.X, this.Y, spriteWidth, spriteHeight);
+        }
+
         public int getX()
         {
             return this.X;
@@ -128,6 +183,30 @@ namespace RogueLike
         public void setY(int y)
         {
             this.Y = y;
+        }
+
+        public int LevelsCompleted
+        {
+            get => levelsCompleted;
+            set => levelsCompleted = value;
+        }
+
+        public int ProjectilesFired
+        {
+            get => projectilesFired;
+            set => projectilesFired = value;
+        }
+
+        public int playerCooldown
+        {
+            get { return cooldown; }
+            set { cooldown = value; }
+        }
+
+        public Weapon Weapon
+        {
+            get => weapon;
+            set => weapon = value;
         }
     }
 }

@@ -1364,7 +1364,7 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/Hero/Run/бег6.png
 
-#begin Graphic/Hero/Stay/стоит1.png
+#begin Graphic/Hero/Stay/stay1left.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1374,7 +1374,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Graphic/Hero/Stay/стоит1.png
+/build:Graphic/Hero/Stay/stay1left.png
+
+#begin Graphic/Hero/Stay/stay1right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Hero/Stay/stay1right.png
 
 #begin Graphic/Hero/Stay/стоит2.png
 /importer:TextureImporter
@@ -2360,18 +2372,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/UI/GameButtons/Separately/sheet.png
 
-#begin Graphic/UI/Menu/1659385766_52-kartinkin-net-p-doski-piksel-art-oboi-60.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphic/UI/Menu/1659385766_52-kartinkin-net-p-doski-piksel-art-oboi-60.png
-
 #begin Graphic/UI/Menu/2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2383,6 +2383,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphic/UI/Menu/2.png
+
+#begin Graphic/UI/Menu/background1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/UI/Menu/background1.png
+
+#begin Graphic/UI/Menu/background2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/UI/Menu/background2.png
+
+#begin Graphic/UI/Menu/background3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/UI/Menu/background3.png
 
 #begin Graphic/UI/Menu/Buttons/button.png
 /importer:TextureImporter
@@ -2408,7 +2444,7 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/UI/Menu/Buttons/buttonpress.png
 
-#begin Graphic/UI/Menu/mainmenu.png
+#begin Graphic/UI/Menu/mouse.webp
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -2418,19 +2454,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Graphic/UI/Menu/mainmenu.png
-
-#begin Graphic/UI/Menu/Menu.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphic/UI/Menu/Menu.png
+/build:Graphic/UI/Menu/mouse.webp
 
 #begin Graphic/Weapons/ALL.png
 /importer:TextureImporter

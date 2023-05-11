@@ -50,7 +50,7 @@
     <None Update="Content\Graphic\UI\Menu\Buttons\buttonpress.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Graphic\UI\Menu\mainmenu.png">
+    <None Update="Content\Graphic\UI\Menu\background2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
