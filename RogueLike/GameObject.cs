@@ -52,7 +52,7 @@ namespace RogueLike
 
         }
 
-        public void drawHitbox()
+        public void DrawHitbox()
         {
 
         }
@@ -62,7 +62,7 @@ namespace RogueLike
 
         }
 
-        public virtual void playEffect()
+        public virtual void PlayEffect()
         {
             if (effect != null)
             {
@@ -70,7 +70,7 @@ namespace RogueLike
             }
         }
 
-        public virtual void playSound()
+        public virtual void PlaySound()
         {
 
         }

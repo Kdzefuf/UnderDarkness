@@ -39,11 +39,11 @@ namespace RogueLike
             RoomBoarders();
             int randomLevelOne = random.Next(level.LevelList.Count);
             int randomLevelTwo = random.Next(level.LevelList.Count);
-            int randomLevelTree = random.Next(level.LevelList.Count);
+            int randomLevelThree = random.Next(level.LevelList.Count);
 
             TraverseLevelArray(UnitCoordinate(2), UnitCoordinate(1), level.LevelList[randomLevelOne]);
             TraverseLevelArray(UnitCoordinate(9), UnitCoordinate(1), level.LevelList[randomLevelTwo]);
-            TraverseLevelArray(UnitCoordinate(16), UnitCoordinate(1), level.LevelList[randomLevelTree]);
+            TraverseLevelArray(UnitCoordinate(16), UnitCoordinate(1), level.LevelList[randomLevelThree]);
         }
 
         private int UnitCoordinate(int coordinate)
@@ -182,6 +182,18 @@ namespace RogueLike
                     mediator.itemToBeAdded.Add(new Tiles(i, j, random.Next(3) + 1, this.mediator));
                 }
             }
+        }
+
+        public int EnemyCount
+        {
+            get => enemyCount;
+            set => enemyCount = value;
+        }
+
+        public int Multiplier
+        {
+            get => multiplier;
+            set => multiplier = value;
         }
     }
 }

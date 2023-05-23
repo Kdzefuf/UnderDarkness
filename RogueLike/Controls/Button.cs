@@ -23,9 +23,9 @@ namespace RogueLike
         protected int stringPosX;
         protected int stringPosY;
 
-        public Button(int X, int Y, Mediator mediator, String buttonString) : base(mediator, X, Y)
+        public Button(int X, int Y, Mediator mediator, string buttonString) : base(mediator, X, Y)
         {
-            this.hitbox = new Rectangle(this.X, this.Y, ButtonWidth, ButtonHeight);
+            hitbox = new Rectangle(this.X, this.Y, ButtonWidth, ButtonHeight);
             this.buttonString = buttonString;
             stringPosX = X + 100;
             stringPosY = Y + 20;

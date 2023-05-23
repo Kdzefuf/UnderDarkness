@@ -79,7 +79,7 @@ namespace RogueLike
                 }
                 else if (this.direction == Direction.Left)
                 {
-                    spriteBatch.Draw(projectileTextureLeft, hitbox, Color.White);
+                    spriteBatch.Draw(projectileTextureRight, hitbox, Color.White);
                 }
             }
         }
@@ -98,7 +98,7 @@ namespace RogueLike
         public override void Load()
         {
             projectileTextureLeft =
-                Mediator.Game.Content.Load<Texture2D>("Projectiles/DefaultProjectiles/poison_arrow_6");
+                Mediator.Game.Content.Load<Texture2D>("Projectiles/DefaultProjectiles/poison_arrow_d6");
             projectileTextureRight =
                 Mediator.Game.Content.Load<Texture2D>("Projectiles/DefaultProjectiles/poison_arrow_2");
             projectileTextureUp =

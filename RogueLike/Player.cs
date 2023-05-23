@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace RogueLike
 {
@@ -19,7 +18,7 @@ namespace RogueLike
         public int speed = 2;
         private int spriteWidth = 27;
         private int spriteHeight = 27;
-        public int health = 3;
+        public int health = 300;
         private bool alive = true;
         public int prevPosX;
         public int prevPosY;
@@ -28,7 +27,7 @@ namespace RogueLike
         private bool hurting = false;
         private int levelsCompleted;
         private int projectilesFired;
-        private int maxHp = 3;
+        private int maxHp = 300;
 
         public Player(int x, int y)
         {
@@ -71,16 +70,16 @@ namespace RogueLike
             }
         }
 
-        //private void fireDefualt(int x, int y, Direction direction)
-        //{
-        //    Projectile defaultProjectile = new Projectile(x, y, direction, mediator);
-        //    this.Load();
-        //    defaultShoot.CreateInstance().Play();
-        //    defaultProjectile.Load();
-        //    mediator.itemToBeAdded.Add(defaultProjectile);
-        //}
+        private void Fire(int x, int y, Direction direction)
+        {
+            Projectile defaultProjectile = new Projectile(x, y, direction, mediator);
+            this.Load();
+            //defaultShoot.CreateInstance().Play();
+            defaultProjectile.Load();
+            mediator.itemToBeAdded.Add(defaultProjectile);
+        }
 
-        private Boolean isDead()
+        private bool isDead()
         {
             if (health <= 0)
             {
@@ -137,11 +136,33 @@ namespace RogueLike
             }
         }
 
+        public void Shooting(GameTime gameTime)
+        {
+            KeyboardState key = Keyboard.GetState();
+            if (key.IsKeyDown(Keys.Space))
+            {
+                if (lastShot > cooldown)
+                {
+                    projectilesFired++;
+                    lastShot = 0;
+
+                    if (weapon != null)
+                    {
+                        mediator.player.weapon.Fire(this.X, this.Y, this.direction);
+                    }
+                    else if (weapon == null)
+                    {
+                        Fire(this.X, this.Y, this.direction);
+                    }
+                }
+            }
+        }
+
         public override void Update(GameTime gameTime)
         {
             lastShot += gameTime.ElapsedGameTime.TotalMilliseconds;
             Move();
-            //shooting(gameTime);
+            Shooting(gameTime);
 
             if (health > maxHp)
             {

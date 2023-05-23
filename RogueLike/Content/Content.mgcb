@@ -44,6 +44,54 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/base.png
 
+#begin Graphic/Enemies/Boar/boar_attack_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Enemies/Boar/boar_attack_left.png
+
+#begin Graphic/Enemies/Boar/boar_attack_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Enemies/Boar/boar_attack_right.png
+
+#begin Graphic/Enemies/Boar/boar_death_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Enemies/Boar/boar_death_left.png
+
+#begin Graphic/Enemies/Boar/boar_death_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Enemies/Boar/boar_death_right.png
+
 #begin Graphic/Enemies/Boar/boar_death.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -55,6 +103,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphic/Enemies/Boar/boar_death.png
+
+#begin Graphic/Enemies/Boar/boar_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Enemies/Boar/boar_left.png
+
+#begin Graphic/Enemies/Boar/boar_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Enemies/Boar/boar_right.png
 
 #begin Graphic/Enemies/Boar/boar1.png
 /importer:TextureImporter
@@ -91,18 +163,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphic/Enemies/Boar/boar3.png
-
-#begin Graphic/Enemies/Boar/boar4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphic/Enemies/Boar/boar4.png
 
 #begin Graphic/Enemies/Boar/boar5.png
 /importer:TextureImporter
@@ -584,6 +644,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/Environment/coin/coin_4.png
 
+#begin Graphic/Environment/door.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Environment/door.png
+
 #begin Graphic/Environment/Dungeon_Tileset.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -680,6 +752,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/Environment/ground.png
 
+#begin Graphic/Environment/open_door.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Environment/open_door.png
+
 #begin Graphic/Environment/peaks/peaks_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -727,6 +811,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphic/Environment/peaks/peaks_4.png
+
+#begin Graphic/Environment/spikes.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Environment/spikes.png
 
 #begin Graphic/Environment/stones/128x256.png
 /importer:TextureImporter
@@ -1196,6 +1292,30 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/Environment/wall.png
 
+#begin Graphic/Hero/Death/death_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Hero/Death/death_left.png
+
+#begin Graphic/Hero/Death/death_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Hero/Death/death_right.png
+
 #begin Graphic/Hero/Death/смерть1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1244,6 +1364,30 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/Hero/Death/смерть4.png
 
+#begin Graphic/Hero/Dodge/ability_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Hero/Dodge/ability_left.png
+
+#begin Graphic/Hero/Dodge/ability_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Hero/Dodge/ability_right.png
+
 #begin Graphic/Hero/Dodge/кувырок1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1279,6 +1423,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphic/Hero/Dodge/кувырок3.png
+
+#begin Graphic/Hero/Run/run_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Hero/Run/run_left.png
+
+#begin Graphic/Hero/Run/run_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Hero/Run/run_right.png
 
 #begin Graphic/Hero/Run/running.png
 /importer:TextureImporter
@@ -1363,6 +1531,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphic/Hero/Run/бег6.png
+
+#begin Graphic/Hero/Stay/stay_left.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Hero/Stay/stay_left.png
+
+#begin Graphic/Hero/Stay/stay_right.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Hero/Stay/stay_right.png
 
 #begin Graphic/Hero/Stay/stay1left.png
 /importer:TextureImporter
@@ -2755,6 +2947,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphic/Weapons/hammers.png
+
+#begin Graphic/Weapons/simpleGun.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Weapons/simpleGun.png
 
 #begin Graphic/Weapons/spears.png
 /importer:TextureImporter

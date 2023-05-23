@@ -4,14 +4,22 @@ using System;
 
 namespace RogueLike
 {
+    /// <summary>
+    /// Класс визуального интерфейса
+    /// </summary>
     class HUD : GameObject
     {
+        // Игрок
         private Player _player;
+        // Уровень
         private Level _level;
         private int unitsAvailableX;
         private int unitsAvailableY;
+        // Размер блока
         private int unit = 32;
+        // Шрифт
         private SpriteFont _spriteFont;
+        // Цвет шрифта
         private Color textColor = Color.LightYellow;
 
         public HUD(int x, int y, Mediator mediator) : base(mediator, x, y)
@@ -22,6 +30,10 @@ namespace RogueLike
             InitHUDBackground();
         }
 
+        /// <summary>
+        /// Метод изображения урона
+        /// </summary>
+        /// <param name="spriteBatch">Спрайт</param>
         public void DisplayDamage(SpriteBatch spriteBatch)
         {
             int x = unit * 8;
@@ -43,6 +55,9 @@ namespace RogueLike
             StaticHUDText(spriteBatch);
         }
 
+        /// <summary>
+        /// Метод инициализации фона интерфейса
+        /// </summary>
         private void InitHUDBackground()
         {
             Random random = new Random();
@@ -61,6 +76,10 @@ namespace RogueLike
             _spriteFont = Mediator.Game.Content.Load<SpriteFont>(@"Fonts\Font");
         }
 
+        /// <summary>
+        /// Метод статического текста
+        /// </summary>
+        /// <param name="spriteBatch">Спрайт</param>
         private void StaticHUDText(SpriteBatch spriteBatch)
         {
             if (mediator.player.health > 0)
@@ -74,6 +93,11 @@ namespace RogueLike
             DisplayDamage(spriteBatch);
         }
 
+        /// <summary>
+        /// Метод вычисления координаты
+        /// </summary>
+        /// <param name="coordinates"></param>
+        /// <returns></returns>
         public int UnitCoord(int coordinates)
         {
             int unitCoord = coordinates * unit;
