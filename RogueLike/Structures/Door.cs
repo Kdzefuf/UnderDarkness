@@ -78,7 +78,7 @@ namespace RogueLike
         {
             if (PlaySoundBool)
             {
-                soundEffect.CreateInstance().Play();
+                //soundEffect.CreateInstance().Play();
                 PlaySoundBool = false;
             }
 

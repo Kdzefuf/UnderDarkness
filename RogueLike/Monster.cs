@@ -146,7 +146,7 @@ namespace RogueLike
             if (health <= 0)
             {
                 alive = false;
-                dead.Play();
+                //dead.Play();
             }
 
             if (!alive)

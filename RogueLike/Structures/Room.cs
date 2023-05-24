@@ -126,7 +126,7 @@ namespace RogueLike
                             mediator.itemToBeAdded.Add(new SimpleGun(x + UnitCoordinate(i), y + UnitCoordinate(j), mediator));
                             break;
                         case 8:
-                            mediator.itemToBeAdded.Add(new Wand(x + UnitCoordinate(i), y + UnitCoordinate(j), mediator));
+                            mediator.itemToBeAdded.Add(new Staff(x + UnitCoordinate(i), y + UnitCoordinate(j), mediator));
                             break;
                         case 9:
                             mediator.itemToBeAdded.Add(new BossGhost(x + UnitCoordinate(i), y + UnitCoordinate(j), mediator));

@@ -43,14 +43,14 @@ namespace RogueLike
             {
                 hasHit = true;
                 Monster p = (Monster)other;
-                //p.Health = p.Health - damage;
+                p.Health = p.Health - damage;
                 //mediator.player.OverallDamegeDone += damage;
                 mediator.itemToBeDeleted.Add(this);
             }
 
             if (other is Wall || other is Door)
             {
-                hitWall.CreateInstance().Play();
+                //hitWall.CreateInstance().Play();
                 mediator.itemToBeDeleted.Add(this);
             }
             return true;
@@ -67,11 +67,11 @@ namespace RogueLike
             {
                 if (this.direction == Direction.Up)
                 {
-                    spriteBatch.Draw(projectileTextureRight, hitbox, Color.White);
+                    spriteBatch.Draw(projectileTextureUp, hitbox, Color.White);
                 }
                 else if (this.direction == Direction.Down)
                 {
-                    spriteBatch.Draw(projectileTextureRight, hitbox, Color.White);
+                    spriteBatch.Draw(projectileTextureDown, hitbox, Color.White);
                 }
                 else if (this.direction == Direction.Right)
                 {
@@ -79,7 +79,7 @@ namespace RogueLike
                 }
                 else if (this.direction == Direction.Left)
                 {
-                    spriteBatch.Draw(projectileTextureRight, hitbox, Color.White);
+                    spriteBatch.Draw(projectileTextureLeft, hitbox, Color.White);
                 }
             }
         }
@@ -98,16 +98,16 @@ namespace RogueLike
         public override void Load()
         {
             projectileTextureLeft =
-                Mediator.Game.Content.Load<Texture2D>("Projectiles/DefaultProjectiles/poison_arrow_d6");
+                Mediator.Game.Content.Load<Texture2D>(@"Graphic\Weapons\common_arrow_5");
             projectileTextureRight =
-                Mediator.Game.Content.Load<Texture2D>("Projectiles/DefaultProjectiles/poison_arrow_2");
+                Mediator.Game.Content.Load<Texture2D>(@"Graphic\Weapons\common_arrow");
             projectileTextureUp =
-                Mediator.Game.Content.Load<Texture2D>("Projectiles/DefaultProjectiles/poison_arrow_0");
+                Mediator.Game.Content.Load<Texture2D>(@"Graphic\Weapons\common_arrow_3");
             projectileTextureDown =
-                Mediator.Game.Content.Load<Texture2D>("Projectiles/DefaultProjectiles/poison_arrow_4");
+                Mediator.Game.Content.Load<Texture2D>(@"Graphic\Weapons\common_arrow_7");
 
-            hitMonster = Mediator.Game.Content.Load<SoundEffect>("Sounds/Hit");
-            hitWall = Mediator.Game.Content.Load<SoundEffect>("Sounds/HitWall");
+            //hitMonster = Mediator.Game.Content.Load<SoundEffect>("Sounds/Hit");
+            //hitWall = Mediator.Game.Content.Load<SoundEffect>("Sounds/HitWall");
         }
 
         public void MoveProjectile()
@@ -130,9 +130,9 @@ namespace RogueLike
             }
         }
 
-        private void playShot()
+        private void PlayShot()
         {
-            hitMonster.CreateInstance().Play();
+            //hitMonster.CreateInstance().Play();
         }
 
         public override void Update(GameTime gameTime)
@@ -142,7 +142,7 @@ namespace RogueLike
 
             if (hasHit)
             {
-                playShot();
+                PlayShot();
                 hasHit = false;
             }
         }
@@ -153,7 +153,6 @@ namespace RogueLike
             set => damage = value;
         }
 
-        // creating a new rectangle for our projectile hitbox 
         public Rectangle Rectangle
         {
             get { return new Rectangle(this.X, this.Y, projectileTextureLeft.Width, projectileTextureLeft.Height); }

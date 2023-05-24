@@ -28,7 +28,7 @@ namespace RogueLike
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.Draw(sprite, new Rectangle(this.X, this.Y, spriteWidth, spriteHeight), Color.White);
+            //spriteBatch.Draw(sprite, new Rectangle(this.X, this.Y, spriteWidth, spriteHeight), Color.White);
             this.Projectile = new FrozenBowProjectile(0, 0, Direction.Up, mediator);
         }
 
@@ -36,14 +36,14 @@ namespace RogueLike
         {
             Projectile frozenBowProjectile = new FrozenBowProjectile(x, y, direction, mediator);
             this.Load();
-            shoot.CreateInstance().Play();
+            //shoot.CreateInstance().Play();
             frozenBowProjectile.Load();
             mediator.itemToBeAdded.Add(frozenBowProjectile);
         }
 
         public override void Load()
         {
-            //sprite = Mediator.Game.Content.Load<Texture2D>("Items/Weapons/urand_piercer_new");
+            sprite = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Weapons\frozen_bow");
             //pickUp = Mediator.Game.Content.Load<SoundEffect>("Sounds/PickupFrozenBow");
             //shoot = Mediator.Game.Content.Load<SoundEffect>("Sounds/FrozenBow");
         }

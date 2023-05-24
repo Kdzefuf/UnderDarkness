@@ -35,14 +35,14 @@ namespace RogueLike
         {
             Projectile crossbowProjectile = new CrossbowProjectile(x, y, direction, mediator);
             this.Load();
-            shoot.CreateInstance().Play();
+            //shoot.CreateInstance().Play();
             crossbowProjectile.Load();
             mediator.itemToBeAdded.Add(crossbowProjectile);
         }
 
         public override void Load()
         {
-            //sprite = Mediator.Game.Content.Load<Texture2D>("items/crossbow_1");
+            sprite = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Weapons\comon_bow");
             //pickUp = Mediator.Game.Content.Load<SoundEffect>("Sounds/PickupCrossbow");
             //shoot = Mediator.Game.Content.Load<SoundEffect>("Sounds/CrossBow");
         }
