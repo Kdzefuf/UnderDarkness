@@ -1,31 +1,42 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 
 namespace RogueLike
 {
+    /// <summary>
+    /// Класс игры
+    /// </summary>
     public class RogueGame : Game
     {
+        // Комната
         private Room room;
         GraphicsDeviceManager _graphics;
-        RenderTarget2D _nativeRenderTarget;
         Rectangle nativeWindowRectangle;
-        Rectangle windowBoxingRect;
-        float WindowAspect { get { return Window.ClientBounds.Width / (float)Window.ClientBounds.Height; } }
-        float nativeAspect;
         SpriteBatch _spriteBatch;
+        // Список всех объектов
         private List<GameObject> allObjects = new List<GameObject>();
+        // Список предметов на добавление
         private List<GameObject> itemsToBeAdded = new List<GameObject>();
+        // Список предметов на удаление
         private List<GameObject> itemsToBeDeleted = new List<GameObject>();
+        // Состояние игры
         private ActualGameState gameState = new ActualGameState(GameState.Menu);
+        // Игровое время
         private GameTime gameTime;
+        // Игрок
         Player player = new Player(33, 230);
+        // Посредник
         Mediator mediator;
+        // Начальное меню
         private StartMenu startMenu;
+        // Меню конца игры
         private GameOverMenu gameOverMenu;
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public RogueGame()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -46,9 +57,9 @@ namespace RogueLike
         }
 
         /// <summary>
-        /// This is called when the game should draw itself.
+        /// Рисование
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="gameTime">Предоставляет значение времени</param>
         protected override void Draw(GameTime gameTime)
         {
             //GraphicsDevice.SetRenderTarget(_nativeRenderTarget);
@@ -84,10 +95,7 @@ namespace RogueLike
         //}
 
         /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
+        /// Инициализирует игровую логику
         /// </summary>
         protected override void Initialize()
         {
@@ -112,8 +120,7 @@ namespace RogueLike
         }
 
         /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
+        /// Загрузка контента
         /// </summary>
         protected override void LoadContent()
         {
@@ -127,6 +134,10 @@ namespace RogueLike
             // TODO: use this.Content to load your game content here
         }
 
+        /// <summary>
+        /// Рисование в игре
+        /// </summary>
+        /// <param name="gameTime">Предоставляет значение времени</param>
         private void PlayDraw(GameTime gameTime)
         {
             foreach (GameObject gameObject in allObjects)
@@ -135,6 +146,10 @@ namespace RogueLike
             }
         }
 
+        /// <summary>
+        /// Игровое обновление
+        /// </summary>
+        /// <param name="gameTime">Предоставляет значение времени</param>
         private void PlayUpdate(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
@@ -180,28 +195,28 @@ namespace RogueLike
             base.Update(gameTime);
         }
 
-        private void UpdateWindowBoxingRect(object sender, EventArgs e) // Updates windowBoxingRect
-        {
-            // Calculates dimensions of black bars on sides of screen
-            int windowWidth, windowHeight;
-            if (_graphics.IsFullScreen) { windowWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width; windowHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height; }
-            else { windowWidth = Window.ClientBounds.Width; windowHeight = Window.ClientBounds.Height; }
+        //private void UpdateWindowBoxingRect(object sender, EventArgs e) // Updates windowBoxingRect
+        //{
+        //    // Calculates dimensions of black bars on sides of screen
+        //    int windowWidth, windowHeight;
+        //    if (_graphics.IsFullScreen) { windowWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width; windowHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height; }
+        //    else { windowWidth = Window.ClientBounds.Width; windowHeight = Window.ClientBounds.Height; }
 
-            if (WindowAspect <= nativeAspect)
-            {
-                //Smaller output means taller than native, meaning top bars
-                int presentHeight = (int)((windowWidth / nativeAspect) + 0.5f);
-                int barHeight = (windowHeight - presentHeight) / 2;
-                windowBoxingRect = new Rectangle(0, barHeight, windowWidth, presentHeight);
-            }
-            else
-            {
-                //Larger output means wider than native, meaning side bars
-                int presentWidth = (int)((windowHeight * nativeAspect) + 0.5f);
-                int barWidth = (windowWidth - presentWidth) / 2;
-                windowBoxingRect = new Rectangle(barWidth, 0, presentWidth, windowHeight);
-            }
-        }
+        //    if (WindowAspect <= nativeAspect)
+        //    {
+        //        //Smaller output means taller than native, meaning top bars
+        //        int presentHeight = (int)((windowWidth / nativeAspect) + 0.5f);
+        //        int barHeight = (windowHeight - presentHeight) / 2;
+        //        windowBoxingRect = new Rectangle(0, barHeight, windowWidth, presentHeight);
+        //    }
+        //    else
+        //    {
+        //        //Larger output means wider than native, meaning side bars
+        //        int presentWidth = (int)((windowHeight * nativeAspect) + 0.5f);
+        //        int barWidth = (windowWidth - presentWidth) / 2;
+        //        windowBoxingRect = new Rectangle(barWidth, 0, presentWidth, windowHeight);
+        //    }
+        //}
 
         private void ToggleFullscreen()
         {
@@ -225,10 +240,9 @@ namespace RogueLike
         }
 
         /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
+        /// Обновление текущего состояния игры
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="gameTime">Предоставляет значение времени</param>
         protected override void Update(GameTime gameTime)
         {
             this.gameTime = gameTime;

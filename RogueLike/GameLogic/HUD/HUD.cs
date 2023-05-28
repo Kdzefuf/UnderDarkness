@@ -22,6 +22,12 @@ namespace RogueLike
         // Цвет шрифта
         private Color textColor = Color.LightYellow;
 
+        /// <summary>
+        /// Визуальный интерфейс
+        /// </summary>
+        /// <param name="x">Координата х</param>
+        /// <param name="y">Координата у</param>
+        /// <param name="mediator">Посредник</param>
         public HUD(int x, int y, Mediator mediator) : base(mediator, x, y)
         {
             unitsAvailableX = X / unit;

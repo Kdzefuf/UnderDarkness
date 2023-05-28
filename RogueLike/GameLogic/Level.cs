@@ -2,19 +2,33 @@
 
 namespace RogueLike
 {
+    /// <summary>
+    /// Класс уровня
+    /// </summary>
     public class Level
     {
+        // Посредник
         public Mediator mediator { get; set; }
+        // Номер уровня
         private int level = 0;
+        // Множитель
         private int multiplier = 0;
+        // Список уровней
         private List<int[,]> levelList = new List<int[,]>();
+        // Список уровней
         public List<int[,]> LevelList => levelList;
 
+        /// <summary>
+        /// Уровень
+        /// </summary>
         public Level()
         {
             InitializeLevels();
         }
 
+        /// <summary>
+        /// Инициализация уровня
+        /// </summary>
         public void InitializeLevels()
         {
             /*
@@ -164,6 +178,9 @@ namespace RogueLike
             levelList.Add(creepyCrawly);
         }
 
+        /// <summary>
+        /// Множитель
+        /// </summary>
         public int Multiplier
         {
             get => multiplier;

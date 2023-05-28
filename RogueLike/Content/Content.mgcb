@@ -3164,6 +3164,18 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/Weapons/hammers.png
 
+#begin Graphic/Weapons/simpleGun_bullet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Weapons/simpleGun_bullet.png
+
 #begin Graphic/Weapons/simpleGun.png
 /importer:TextureImporter
 /processor:TextureProcessor
