@@ -14,6 +14,7 @@ namespace RogueLike
         private Texture2D closedDoor;
         // Открытая дверь
         private Texture2D openDoor;
+        private Player player;
         // Уровень
         private int level;
         // Флаг открытой двери
@@ -99,7 +100,7 @@ namespace RogueLike
         {
             closedDoor = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Environment\door");
             openDoor = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Environment\open_door");
-            //soundEffect = Mediator.Game.Content.Load<SoundEffect>("Sounds/LevelUp");
+            soundEffect = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\Door");
         }
 
         /// <summary>
@@ -121,15 +122,16 @@ namespace RogueLike
         {
             if (PlaySoundBool)
             {
-                //soundEffect.CreateInstance().Play();
+                soundEffect.CreateInstance().Play();
                 PlaySoundBool = false;
             }
 
             if (mediator.room.EnemyCount == 0)
             {
                 isOpen = true;
-            }
+                LevelUp(mediator.itemToBeAdded);
 
+            }
             else
             {
                 isOpen = false;

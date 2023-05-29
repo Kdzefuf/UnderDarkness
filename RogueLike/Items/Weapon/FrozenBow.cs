@@ -63,7 +63,7 @@ namespace RogueLike
         {
             Projectile frozenBowProjectile = new FrozenBowProjectile(x, y, direction, mediator);
             this.Load();
-            //shoot.CreateInstance().Play();
+            shoot.CreateInstance().Play();
             frozenBowProjectile.Load();
             mediator.itemToBeAdded.Add(frozenBowProjectile);
         }
@@ -74,8 +74,7 @@ namespace RogueLike
         public override void Load()
         {
             sprite = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Weapons\frozen_bow");
-            //pickUp = Mediator.Game.Content.Load<SoundEffect>("Sounds/PickupFrozenBow");
-            //shoot = Mediator.Game.Content.Load<SoundEffect>("Sounds/FrozenBow");
+            shoot = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\Bow");
         }
 
         public override string ToString()

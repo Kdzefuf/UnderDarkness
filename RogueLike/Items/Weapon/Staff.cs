@@ -64,7 +64,7 @@ namespace RogueLike
             // Снаряд посоха
             Projectile staffProjectile = new StaffProjectile(x, y, direction, mediator);
             this.Load();
-            //shoot.Play();
+            shoot.Play();
             staffProjectile.Load();
             mediator.itemToBeAdded.Add(staffProjectile);
         }
@@ -75,8 +75,7 @@ namespace RogueLike
         public override void Load()
         {
             sprite = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Weapons\staff");
-            //shoot = Mediator.Game.Content.Load<SoundEffect>("Sounds/Wand");
-            //pickUp = Mediator.Game.Content.Load<SoundEffect>("Sounds/PickupWand");
+            shoot = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\staff");
         }
 
         public override string ToString()
@@ -90,7 +89,6 @@ namespace RogueLike
         /// <param name="gameTime">Предоставляет значение времени</param>
         public override void Update(GameTime gameTime)
         {
-            PlayPickUp();
         }
     }
 }

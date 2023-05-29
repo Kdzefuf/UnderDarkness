@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace RogueLike
@@ -41,7 +42,7 @@ namespace RogueLike
             {
                 playSoundBool = true;
                 mediator.player.health = mediator.player.health + hpPlus;
-                //mediator.player.OverallHealingDone += hpPlus;
+                mediator.player.OverallHealingDone += hpPlus;
                 this.hitbox = Rectangle.Empty;
                 this.isTaken = true;
             }
@@ -68,13 +69,13 @@ namespace RogueLike
         {
             filledHpPotion = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Environment\flask\flasks_4_1");
             emptyHpPotion = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Environment\flask\flasks_4_2");
-            //soundEffect = Mediator.Game.Content.Load<SoundEffect>("Sounds/Powerup");
+            soundEffect = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\flask");
         }
 
-        //public override void PlaySound()
-        //{
-        //    soundEffect.CreateInstance().Play();
-        //}
+        public override void PlaySound()
+        {
+            soundEffect.CreateInstance().Play();
+        }
 
         /// <summary>
         /// Обновление столкновения объекта

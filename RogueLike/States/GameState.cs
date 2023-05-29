@@ -5,6 +5,6 @@
     /// </summary>
     public enum GameState
     {
-        Play, Menu, GameOver
+        Play, Menu, GameOver, WinState
     }
 }

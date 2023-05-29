@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace RogueLike
@@ -23,11 +24,11 @@ namespace RogueLike
         /// <param name="mediator">Посредник</param>
         public Boss(int x, int y, Mediator mediator) : base(x, y, mediator)
         {
-            this.hitbox = new Rectangle(this.X, this.Y, 64, 64);
+            this.hitbox = new Rectangle(this.X, this.Y, 96, 92);
             this.priority = 10;
             this.health = 250;
-            this.spriteWidth = 25;
-            this.spriteHeight = 25;
+            this.spriteWidth = 48;
+            this.spriteHeight = 46;
         }
 
         /// <summary>
@@ -63,10 +64,10 @@ namespace RogueLike
         /// </summary>
         public override void Load()
         {
-            this.bossLeft = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Enemies\Boar\boar_attack_left");
-            this.bossRight = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Enemies\Boar\boar_attack_right");
+            this.bossLeft = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Enemies\Boss\stayLeft");
+            this.bossRight = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Enemies\Boss\stay");
 
-            //dead = Mediator.Game.Content.Load<SoundEffect>("Sounds/MonsterDead");
+            dead = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\Boardeath");
         }
 
         /// <summary>
@@ -117,7 +118,12 @@ namespace RogueLike
             if (other is Player)
             {
                 mediator.player.health = mediator.player.health - 2;
-                //mediator.player.OverallDamgeTaken = mediator.player.OverallDamgeTaken + 2;
+                mediator.player.OverallDamageTaken = mediator.player.OverallDamageTaken + 2;
+                return true;
+            }
+            if (other is FrozenBowProjectile)
+            {
+                speed = 1;
                 return true;
             }
             else

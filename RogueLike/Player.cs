@@ -15,8 +15,10 @@ namespace RogueLike
         private Texture2D playerLeft;
 
         private SoundEffect defaultShoot;
+        private SoundEffect death;
         public Rectangle hitbox;
-        public Rectangle animBox;
+
+        private Texture2D winGem;
         // Оружие
         public Weapon weapon;
         // Направление
@@ -39,20 +41,23 @@ namespace RogueLike
         private int cooldown = 500;
         // Последний выстрел
         private double lastShot = 0;
+        // Флаг удара
+        private bool hurting = false;
+        // Количество убийств
+        private int kills = 0;
+        // Всего урона получено
+        private int overallDamageTaken;
+        // Всего урона нанесено
+        private int overallDamageDone;
+        // Всего вылечено
+        private int overallHealingDone;
         // Пройденные уровни
         private int levelsCompleted;
         // Количество выстрелов
         private int projectilesFired;
         // Максимальное здоровья
         private int maxHp = 300;
-
-        int currentTime = 0; // сколько времени прошло
-        int period = 100; // частота обновления в миллисекундах
-
-        int frameWidth = 180;
-        int frameHeight = 30;
-        Point currentFrame = new Point(0, 0);
-        Point spriteSize = new Point(5, 1);
+        private bool win = false;
 
         /// <summary>
         /// Игрок
@@ -66,8 +71,6 @@ namespace RogueLike
             this.prevPosX = x;
             this.prevPosY = y;
             this.hitbox = new Rectangle(X, Y, spriteWidth, spriteHeight);
-            this.animBox = new Rectangle(currentFrame.X * frameWidth,
-                    currentFrame.Y * frameHeight, frameWidth, frameHeight);
             this.priority = 5;
         }
 
@@ -95,13 +98,11 @@ namespace RogueLike
         {
             if (direction == Direction.Down)
             {
-                spriteBatch.Draw(playerRight, hitbox, new Rectangle(currentFrame.X * frameWidth,
-                    currentFrame.Y * frameHeight,
-                    frameWidth / 6, frameHeight), Color.White);
+                spriteBatch.Draw(playerRight, hitbox, Color.White);
             }
             if (direction == Direction.Up)
             {
-                spriteBatch.Draw(playerRight, hitbox, new Rectangle(currentFrame.X * frameWidth, currentFrame.Y * frameHeight, frameWidth / 6, frameHeight), Color.White);
+                spriteBatch.Draw(playerRight, hitbox, Color.White);
             }
             if (direction == Direction.Left)
             {
@@ -109,7 +110,7 @@ namespace RogueLike
             }
             if (direction == Direction.Right)
             {
-                spriteBatch.Draw(playerRight, hitbox, new Rectangle(currentFrame.X * frameWidth, currentFrame.Y * frameHeight, frameWidth / 6, frameHeight), Color.White);
+                spriteBatch.Draw(playerRight, hitbox, Color.White);
             }
             else
                 spriteBatch.Draw(playerLeft, hitbox, Color.White);
@@ -126,7 +127,7 @@ namespace RogueLike
             // Начальный снаряд
             Projectile defaultProjectile = new Projectile(x, y, direction, mediator);
             this.Load();
-            //defaultShoot.CreateInstance().Play();
+            defaultShoot.CreateInstance().Play();
             defaultProjectile.Load();
             mediator.itemToBeAdded.Add(defaultProjectile);
         }
@@ -139,6 +140,7 @@ namespace RogueLike
         {
             if (health <= 0)
             {
+                death.CreateInstance().Play();
                 this.alive = false;
                 return true;
             }
@@ -150,10 +152,11 @@ namespace RogueLike
         /// </summary>
         public override void Load()
         {
-            playerRight = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Hero\Run\run_right");
+            playerRight = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Hero\Stay\stay1right");
             playerLeft = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Hero\Stay\stay1left");
 
-            //defaultShoot = Mediator.Game.Content.Load<SoundEffect>("Sounds/DefaultWeapon");
+            death = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\Death");
+            defaultShoot = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\Bow");
         }
 
         /// <summary>
@@ -234,21 +237,6 @@ namespace RogueLike
             Move();
             Shooting(gameTime);
 
-            // добавляем к текущему времени прошедшее время
-            currentTime += gameTime.ElapsedGameTime.Milliseconds;
-            // если текущее время превышает период обновления спрайта
-            if (currentTime > period)
-            {
-                currentTime -= period; // вычитаем из текущего времени период обновления
-                ++currentFrame.X; // переходим к следующему фрейму в спрайте
-                if (currentFrame.X >= spriteSize.X)
-                {
-                    currentFrame.X = 0;
-                    ++currentFrame.Y;
-                    if (currentFrame.Y >= spriteSize.Y)
-                        currentFrame.Y = 0;
-                }
-            }
 
             if (health > maxHp)
             {
@@ -263,6 +251,14 @@ namespace RogueLike
             }
 
             if (IsDead())
+            {
+                mediator.gameOverMenu.player = this;
+                mediator.gameOverMenu.GiveStats();
+                mediator.State.State = GameState.GameOver;
+            }
+            if (levelsCompleted == 3)
+                win = true;
+            if (win)
             {
                 mediator.gameOverMenu.player = this;
                 mediator.gameOverMenu.GiveStats();
@@ -324,6 +320,51 @@ namespace RogueLike
         {
             get => projectilesFired;
             set => projectilesFired = value;
+        }
+
+        /// <summary>
+        /// Флаг получения урона
+        /// </summary>
+        public bool Hurting
+        {
+            get => hurting;
+            set => hurting = value;
+        }
+
+        /// <summary>
+        /// Количество убийств
+        /// </summary>
+        public int Kills
+        {
+            get => kills;
+            set => kills = value;
+        }
+
+        /// <summary>
+        /// Всего нанесено урона
+        /// </summary>
+        public int OverallDamageDone
+        {
+            get => overallDamageDone;
+            set => overallDamageDone = value;
+        }
+
+        /// <summary>
+        /// Всего получено урона
+        /// </summary>
+        public int OverallDamageTaken
+        {
+            get => overallDamageTaken;
+            set => overallDamageTaken = value;
+        }
+
+        /// <summary>
+        /// Всего вылечено
+        /// </summary>
+        public int OverallHealingDone
+        {
+            get => overallHealingDone;
+            set => overallHealingDone = value;
         }
 
         /// <summary>

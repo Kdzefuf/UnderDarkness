@@ -63,8 +63,12 @@ namespace RogueLike
             if (other is Player)
             {
                 mediator.player.health = mediator.player.health - 1;
-                //mediator.player.OverallDamageTaken = mediator.player.OverallDamageTaken + 1;
+                mediator.player.OverallDamageTaken = mediator.player.OverallDamageTaken + 1;
                 return true;
+            }
+            if (other is FrozenBowProjectile)
+            {
+                speed = speed / 2;
             }
 
             if (other is Wall || other is CommonMonster && other != this)
@@ -91,7 +95,9 @@ namespace RogueLike
         /// </summary>
         private void Die()
         {
+            mediator.player.Kills++;
             mediator.room.EnemyCount--;
+            mediator.gameOverMenu.PlayerKills = mediator.player.Kills;
             mediator.itemToBeDeleted.Add(this);
         }
 
@@ -100,7 +106,7 @@ namespace RogueLike
         /// </summary>
         public override void Load()
         {
-            dead = Mediator.Game.Content.Load<SoundEffect>("Sounds/MonsterDead");
+            dead = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\Boardeath");
         }
 
         /// <summary>
@@ -190,7 +196,7 @@ namespace RogueLike
             if (health <= 0)
             {
                 alive = false;
-                //dead.Play();
+                dead.Play();
             }
 
             if (!alive)

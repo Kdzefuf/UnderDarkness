@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 namespace RogueLike
@@ -33,6 +34,9 @@ namespace RogueLike
         private StartMenu startMenu;
         // Меню конца игры
         private GameOverMenu gameOverMenu;
+        private Song menuSong;
+        private Song gameSong;
+        private Song gameOverSong;
 
         /// <summary>
         /// Конструктор
@@ -71,7 +75,6 @@ namespace RogueLike
                 case GameState.Play:
                     PlayDraw(gameTime);
                     break;
-
                 case GameState.Menu:
                     startMenu.StateDraw(gameTime, _spriteBatch);
                     break;
@@ -129,8 +132,20 @@ namespace RogueLike
             {
                 gameObject.Load();
             }
-
-            // Create a new SpriteBatch, which can be used to draw textures
+            menuSong = Mediator.Game.Content.Load<Song>(@"Graphic\music\StartMenu");
+            gameSong = Mediator.Game.Content.Load<Song>(@"Graphic\music\Boss");
+            gameOverSong = Mediator.Game.Content.Load<Song>(@"Graphic\music\GameOverMenu");
+            if (gameState.State == GameState.Menu)
+            {
+                MediaPlayer.Play(menuSong);
+                MediaPlayer.IsRepeating = true;
+            }
+            else if (gameState.State == GameState.GameOver)
+            {
+                MediaPlayer.Stop();
+                MediaPlayer.Play(gameOverSong);
+                MediaPlayer.IsRepeating = true;
+            }
             // TODO: use this.Content to load your game content here
         }
 
@@ -194,29 +209,6 @@ namespace RogueLike
             itemsToBeDeleted.Clear();
             base.Update(gameTime);
         }
-
-        //private void UpdateWindowBoxingRect(object sender, EventArgs e) // Updates windowBoxingRect
-        //{
-        //    // Calculates dimensions of black bars on sides of screen
-        //    int windowWidth, windowHeight;
-        //    if (_graphics.IsFullScreen) { windowWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width; windowHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height; }
-        //    else { windowWidth = Window.ClientBounds.Width; windowHeight = Window.ClientBounds.Height; }
-
-        //    if (WindowAspect <= nativeAspect)
-        //    {
-        //        //Smaller output means taller than native, meaning top bars
-        //        int presentHeight = (int)((windowWidth / nativeAspect) + 0.5f);
-        //        int barHeight = (windowHeight - presentHeight) / 2;
-        //        windowBoxingRect = new Rectangle(0, barHeight, windowWidth, presentHeight);
-        //    }
-        //    else
-        //    {
-        //        //Larger output means wider than native, meaning side bars
-        //        int presentWidth = (int)((windowHeight * nativeAspect) + 0.5f);
-        //        int barWidth = (windowWidth - presentWidth) / 2;
-        //        windowBoxingRect = new Rectangle(barWidth, 0, presentWidth, windowHeight);
-        //    }
-        //}
 
         private void ToggleFullscreen()
         {

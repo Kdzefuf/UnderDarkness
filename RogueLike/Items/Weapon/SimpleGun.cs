@@ -63,7 +63,7 @@ namespace RogueLike
         {
             Projectile simpleGunProjectile = new SimpleGunProjectile(x, y, direction, mediator);
             this.Load();
-            //shoot.CreateInstance().Play();
+            shoot.CreateInstance().Play();
             simpleGunProjectile.Load();
             mediator.itemToBeAdded.Add(simpleGunProjectile);
         }
@@ -75,7 +75,7 @@ namespace RogueLike
         {
             sprite = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Weapons\simpleGun");
             //pickUp = Mediator.Game.Content.Load<SoundEffect>("Sounds/PickupSimpleGun");
-            //shoot = Mediator.Game.Content.Load<SoundEffect>("Sounds/SimpleGun");
+            shoot = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\Gun");
         }
 
         public override string ToString()

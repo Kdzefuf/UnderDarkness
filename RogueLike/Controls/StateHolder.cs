@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 
@@ -21,6 +22,7 @@ namespace RogueLike
         protected int size = 32;
         // Предоставляет значение времени
         protected GameTime gameTime;
+        public Song menuSong;
 
         /// <summary>
         /// Управление состоянием игры
@@ -78,6 +80,14 @@ namespace RogueLike
             {
                 gameObject.Update(gameTime);
             }
+        }
+
+        /// <summary>
+        /// Загрузка объектов
+        /// </summary>
+        public virtual void Load()
+        {
+
         }
 
         /// <summary>

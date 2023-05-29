@@ -1,4 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
+using SharpDX.XInput;
+using System;
 
 namespace RogueLike
 {
@@ -28,10 +31,22 @@ namespace RogueLike
         private void InitializeMenu()
         {
             MenuBackground();
-            stateObjects.Add(new TextField(300, 100, mediator, "Under Darkness", Color.White));
-            stateObjects.Add(new PlayButton(400 - 100, 150, mediator, "Play"));
-            stateObjects.Add(new ExitButton(400 - 100, 350, mediator, "Exit"));
+            stateObjects.Add(new TextField(280, 100, mediator, "Under Darkness", Color.White));
+            stateObjects.Add(new PlayButton(250, 150, mediator, "Play"));
+            stateObjects.Add(new ExitButton(250, 350, mediator, "Exit"));
             stateObjects.Add(new Cursor());
+        }
+
+        public override void Load()
+        {
+            menuSong = Mediator.Game.Content.Load<Song>(@"Graphic\music\StartMenu");
+            MediaPlayer.Play(menuSong);
+            MediaPlayer.IsRepeating = true;
+        }
+
+        public static explicit operator State(StartMenu v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

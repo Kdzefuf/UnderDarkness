@@ -166,10 +166,6 @@ namespace RogueLike
                             mediator.itemToBeAdded.Add(new Boss(x + UnitCoordinate(i), y + UnitCoordinate(j), mediator));
                             enemyCount++;
                             break;
-                        case 10:
-                            mediator.itemToBeAdded.Add(new Fiend(x + UnitCoordinate(i), y + UnitCoordinate(j), mediator));
-                            enemyCount++;
-                            break;
                         default:
                             break;
                     }

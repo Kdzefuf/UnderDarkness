@@ -224,6 +224,30 @@
 /processorParam:TextureFormat=Color
 /build:Graphic/Enemies/Boss/PNG sheet/stay.png
 
+#begin Graphic/Enemies/Boss/stay.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Enemies/Boss/stay.png
+
+#begin Graphic/Enemies/Boss/stayLeft.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Enemies/Boss/stayLeft.png
+
 #begin Graphic/Enemies/Boss/weapon PNG/arm_projectile_glowing.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -739,6 +763,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphic/Environment/Gems/Gems2.png
+
+#begin Graphic/Environment/Gems/WinGem.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphic/Environment/Gems/WinGem.png
 
 #begin Graphic/Environment/ground.png
 /importer:TextureImporter
@@ -1603,6 +1639,102 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphic/Hero/Stay/стоит3.png
+
+#begin Graphic/music/Arrow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/Arrow.wav
+
+#begin Graphic/music/Boardeath.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/Boardeath.wav
+
+#begin Graphic/music/Boss.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/Boss.mp3
+
+#begin Graphic/music/Bow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/Bow.wav
+
+#begin Graphic/music/bullet.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/bullet.wav
+
+#begin Graphic/music/Death.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/Death.wav
+
+#begin Graphic/music/Door.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/Door.wav
+
+#begin Graphic/music/flask.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/flask.wav
+
+#begin Graphic/music/GameOverMenu.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/GameOverMenu.mp3
+
+#begin Graphic/music/Gun.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/Gun.wav
+
+#begin Graphic/music/Level.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/Level.wav
+
+#begin Graphic/music/Shot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/Shot.wav
+
+#begin Graphic/music/staff.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/staff.wav
+
+#begin Graphic/music/StaffProj.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/StaffProj.wav
+
+#begin Graphic/music/staffprojwall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/staffprojwall.wav
+
+#begin Graphic/music/StartMenu.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Graphic/music/StartMenu.mp3
 
 #begin Graphic/pet27_serenade_atk_0.png
 /importer:TextureImporter

@@ -15,6 +15,10 @@ namespace RogueLike
 
         // Игрок
         public Player player = new Player(0, 0);
+        // Количество убийств игрока
+        private int playerKills;
+        // Кристалл
+        public Texture2D winGem;
 
         /// <summary>
         /// Меню окончания игры
@@ -35,12 +39,33 @@ namespace RogueLike
         {
             stateObjects.Clear();
             MenuBackground();
-            stateObjects.Add(new TextField(50, 50, this.mediator, "YOU HAVE DIED", Color.Yellow));
+            if (mediator.player.LevelsCompleted < 3)
+            {
+                stateObjects.Add(new TextField(50, 50, this.mediator, "YOU HAVE DIED", Color.Yellow));
+            }
+            if (mediator.player.LevelsCompleted == 3)
+            {
+                stateObjects.Add(new TextField(50, 50, this.mediator, "YOU WIN", Color.Yellow));
+                stateObjects.Add(new WinImage(600, 150, this.mediator));
+            }
+
+            stateObjects.Add(new TextField(50, 150, this.mediator, "KILLS: " + player.Kills, Color.Yellow));
             stateObjects.Add(new TextField(50, 200, this.mediator, "LEVELS COMPLETED: " + player.LevelsCompleted, Color.Yellow));
+            stateObjects.Add(new TextField(50, 250, this.mediator, "HEALING DONE: " + player.OverallHealingDone, Color.Yellow));
+            stateObjects.Add(new TextField(50, 300, this.mediator, "DAMAGE TAKEN: " + player.OverallDamageTaken, Color.Yellow));
+            stateObjects.Add(new TextField(50, 350, this.mediator, "DAMAGE DONE: " + player.OverallDamageDone, Color.Yellow));
             stateObjects.Add(new TextField(50, 400, this.mediator, "PROJECTILES FIRED: " + player.ProjectilesFired, Color.Yellow));
             stateObjects.Add(new ExitButton(50, 450, this.mediator, "EXIT"));
-
             stateObjects.Add(new Cursor());
+        }
+
+        /// <summary>
+        /// Количество убийств игрока
+        /// </summary>
+        public int PlayerKills
+        {
+            get => playerKills;
+            set => playerKills = value;
         }
     }
 }

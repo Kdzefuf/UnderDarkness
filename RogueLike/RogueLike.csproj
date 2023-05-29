@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Content\Graphic\Hero\Death\Death.aseprite" />
+    <None Remove="Content\Graphic\music\Level.flac" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />

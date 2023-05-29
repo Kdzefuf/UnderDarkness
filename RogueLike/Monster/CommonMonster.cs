@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace RogueLike
@@ -59,7 +60,7 @@ namespace RogueLike
             creepPictureRight = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Enemies\Boar\boar1");
             creepPictureLeft = Mediator.Game.Content.Load<Texture2D>(@"Graphic\Enemies\Boar\boar5");
 
-            //dead = Mediator.Game.Content.Load<SoundEffect>("Sounds/CreepDead");
+            dead = Mediator.Game.Content.Load<SoundEffect>(@"Graphic\music\Boardeath");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 
 namespace RogueLike
@@ -21,6 +22,7 @@ namespace RogueLike
         private SpriteFont _spriteFont;
         // Цвет шрифта
         private Color textColor = Color.LightYellow;
+        private Song gameSong;
 
         /// <summary>
         /// Визуальный интерфейс
@@ -42,7 +44,7 @@ namespace RogueLike
         /// <param name="spriteBatch">Спрайт</param>
         public void DisplayDamage(SpriteBatch spriteBatch)
         {
-            int x = unit * 8;
+            int x = unit * 9;
             int y = 480 + unit;
 
             if (mediator.player.Weapon == null)
@@ -52,7 +54,7 @@ namespace RogueLike
             }
             else if (mediator.player.Weapon != null)
             {
-                spriteBatch.DrawString(_spriteFont, "DMG ", new Vector2(x, y), textColor);
+                spriteBatch.DrawString(_spriteFont, "DMG " + mediator.player.weapon.Projectile.Damage, new Vector2(x, y), textColor);
             }
         }
 
@@ -80,6 +82,10 @@ namespace RogueLike
         public override void Load()
         {
             _spriteFont = Mediator.Game.Content.Load<SpriteFont>(@"Fonts\Font");
+            gameSong = Mediator.Game.Content.Load<Song>(@"Graphic\music\Boss");
+            MediaPlayer.Stop();
+            MediaPlayer.Play(gameSong);
+            MediaPlayer.IsRepeating = true;
         }
 
         /// <summary>
@@ -96,6 +102,10 @@ namespace RogueLike
             {
                 spriteBatch.DrawString(_spriteFont, "DEAD", new Vector2(0 + 10, 480), textColor);
             }
+            spriteBatch.DrawString(_spriteFont, "Weapon: " + mediator.player.weapon, new Vector2(0 + 10, 480 + unit), textColor);
+            spriteBatch.DrawString(_spriteFont, "Cooldown: " + mediator.player.playerCooldown, new Vector2(0 + 10, 480 + unit * 2), textColor);
+            spriteBatch.DrawString(_spriteFont, "Movement Speed: " + mediator.player.speed, new Vector2(unit * 8, 480), textColor);
+            spriteBatch.DrawString(_spriteFont, "Enemies in Room: " + mediator.room.EnemyCount, new Vector2(unit * 16, 480), textColor);
             DisplayDamage(spriteBatch);
         }
 
